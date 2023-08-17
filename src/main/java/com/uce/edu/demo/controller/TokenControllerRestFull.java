@@ -12,7 +12,7 @@ import com.uce.edu.demo.service.to.UsuarioTO;
 @CrossOrigin
 @RequestMapping("/tokens")
 public class TokenControllerRestFull {
-	@GetMapping
+	@GetMapping("/obtener")
 	public String getToken(@RequestBody UsuarioTO usuario){
 		return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRvbWUiLCJhcGVsbGlkbyI6IlZpeiIsImlhdCI6MTUxNjIzOTAyMn0.4x3Ugs8v2desDN6PO1tCIB3dB38sDD7P6-sk3WJ1OM4";
     }
