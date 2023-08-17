@@ -15,7 +15,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtUtils {
 	
 	//Solo para probar, no usar
-	private static final Logger LOG=LoggerFactory.getLogger(AuthEntryPointJwt.class);
+	private static final Logger LOG=LoggerFactory.getLogger(JwtUtils.class);
 	
 	@Value("${app.jwt.secret}")
     private String jwtSecret;
