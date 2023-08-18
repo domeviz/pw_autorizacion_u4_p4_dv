@@ -24,9 +24,15 @@ public class WebSecurity {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/API/v1.0/Autorizacion/tokens/obtener/**").permitAll().anyRequest().authenticated();
+		//Funcionalidades
+		http.cors().and()
+				//Desabilitar el CrossOrigin
+				.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
+				//Configurar la sesion
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				//Permitir todo a la url
+				//La url es solo del servicio en adelante
+				.antMatchers("/tokens/obtener/**").permitAll().anyRequest().authenticated();
 		http.authenticationProvider(this.authenticationProvider());
 		return http.build();
 	}
