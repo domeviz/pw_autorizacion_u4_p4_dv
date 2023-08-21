@@ -23,19 +23,15 @@ public class WebSecurity {
 	private AuthEntryPointJwt unauthorizedHandler;
 
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		//Funcionalidades
-		http.cors().and()
-				//Desabilitar el CrossOrigin
-				.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
-				//Configurar la sesion
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				//Permitir todo a la url
-				//La url es solo del servicio en adelante
-				.antMatchers("/tokens/obtener/**").permitAll().anyRequest().authenticated();
-		http.authenticationProvider(this.authenticationProvider());
-		return http.build();
-	}
+	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeRequests()
+                .antMatchers("/tokens/obtener/**").permitAll().anyRequest().authenticated();
+        httpSecurity.authenticationProvider(this.authenticationProvider());
+         return httpSecurity.build();
+
+    }
 
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {

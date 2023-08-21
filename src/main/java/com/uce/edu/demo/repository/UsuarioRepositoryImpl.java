@@ -19,7 +19,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
 	@Override
 	public Usuario consultarPorUsername(String username) {
 		// TODO Auto-generated method stub
-		TypedQuery<Usuario>myQuery=this.entityManager.createQuery("SELECT u FROM Usuario u WHERE u.username:=nombreUsuario", Usuario.class);
+		TypedQuery<Usuario>myQuery=this.entityManager.createQuery("SELECT u FROM Usuario u WHERE u.username=:nombreUsuario", Usuario.class);
         myQuery.setParameter("nombreUsuario",username);
         return myQuery.getSingleResult();
 	}
